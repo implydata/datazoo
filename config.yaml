@@ -1,0 +1,187 @@
+port: 9090
+
+druidHost: 192.168.99.100
+
+sourceListScan: disable
+
+dataSources:
+  - name: wikipedia-druid
+    title: Wikipedia Druid
+    engine: druid
+    source: wikipedia
+
+    refreshRule:
+      rule: query
+      refresh: P1D
+
+    defaultSortMeasure: count
+
+    defaultPinnedDimensions: []
+
+    introspection: autofill-all
+
+    attributeOverrides:
+      - name: commentLength
+        type: NUMBER
+
+      - name: isAnonymous
+        type: BOOLEAN
+
+      - name: isMinor
+        type: BOOLEAN
+
+      - name: isNew
+        type: BOOLEAN
+
+      - name: isRobot
+        type: BOOLEAN
+
+    dimensions:
+      - name: __time
+        title: Time
+        kind: time
+        expression: $__time
+
+      - name: sometimeLater
+        title: Sometime Later
+        kind: time
+
+      - name: channel
+        title: Channel
+        expression: $channel
+
+      - name: cityName
+        title: City Name
+        expression: $cityName
+
+      - name: comment
+        title: Comment
+        expression: $comment
+
+      - name: commentLength
+        title: Comment Length
+        expression: $commentLength
+        kind: number
+
+      - name: commentLengthOver100
+        title: Comment Length Over 100
+        expression: $commentLength > 100
+        kind: boolean
+
+      - name: countryIsoCode
+        title: Country Iso Code
+        expression: $countryIsoCode
+
+      - name: countryName
+        title: Country Name
+        expression: $countryName
+
+      - name: isAnonymous
+        title: Is Anonymous
+        kind: boolean
+
+      - name: isMinor
+        title: Is Minor
+        kind: boolean
+
+      - name: isNew
+        title: Is New
+        kind: boolean
+
+      - name: isRobot
+        title: Is Robot
+        kind: boolean
+
+      - name: isUnpatrolled
+        title: Is Unpatrolled
+        expression: $isUnpatrolled
+
+      - name: metroCode
+        title: Metro Code
+        expression: $metroCode
+
+      - name: namespace
+        title: Namespace
+        expression: $namespace
+
+      - name: page
+        title: Page
+        expression: $page
+
+      - name: regionIsoCode
+        title: Region Iso Code
+        expression: $regionIsoCode
+
+      - name: regionName
+        title: Region Name
+        expression: $regionName
+
+      - name: user
+        title: User
+        expression: $user
+
+      - name: userChars
+        title: User Chars
+        expression: $userChars
+
+      - name: userCharsPhonetic
+        title: User Chars Phonetic
+        expression: $userChars.lookup("nato-phonetic")
+
+    measures:
+      - name: count
+        title: Count
+        expression: $main.sum($count)
+
+      - name: added
+        title: Added
+        expression: $main.sum($added)
+
+      - name: deleted
+        title: Deleted
+        expression: $main.sum($deleted)
+
+      - name: delta
+        title: Delta
+        expression: $main.sum($delta)
+
+      - name: deltaByTen
+        title: Delta By Ten
+        expression: $main.sum($deltaByTen)
+
+      - name: delta_hist_p95
+        title: Delta Hist P95
+        expression: $main.quantile($delta_hist,0.95)
+
+      - name: delta_hist_p99
+        title: Delta Hist P99
+        expression: $main.quantile($delta_hist,0.99)
+
+      - name: max_delta
+        title: Max Delta
+        expression: $main.max($max_delta)
+
+      - name: min_delta
+        title: Min Delta
+        expression: $main.min($min_delta)
+
+      - name: page_unique
+        title: Page Unique
+        expression: $main.countDistinct($page_unique)
+
+      - name: user_unique
+        title: User Unique
+        expression: $main.countDistinct($user_unique)
+
+  - name: wikipedia-static
+    title: Wikipedia Static
+    engine: native
+    source: ./wikipedia-sampled.json
+
+    refreshRule:
+      rule: query
+      refresh: P1D
+
+    defaultPinnedDimensions: []
+
+    introspection: autofill-all
