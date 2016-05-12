@@ -1,0 +1,15 @@
+#!/bin/bash -e
+
+docker-machine start default || echo "Machine is already running";
+eval $(docker-machine env)
+
+echo "Loading Druid..."
+docker rm -f datazoo-druid 2>/dev/null || echo "no Druid container to remove";
+docker build -t datazoo-druid ./druid
+docker run -v "$PWD":/opt/data -p 8081-8110:8081-8110 -p 8200:8200 -p 9095:9095 -d --name datazoo-druid datazoo-druid
+docker exec -it datazoo-druid /opt/data/druid/load-data
+
+echo "Loading MySQL..."
+docker rm -f datazoo-mysql 2>/dev/null || echo "no MySQL container to remove";
+docker run -v "$PWD":/opt/data -p 3306:3306 -d --name datazoo-mysql -e MYSQL_ALLOW_EMPTY_PASSWORD='true' -d mysql/mysql-server:5.7
+docker exec -it datazoo-mysql /opt/data/mysql/load-data
