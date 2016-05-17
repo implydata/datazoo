@@ -21,6 +21,9 @@ dataSources:
     introspection: autofill-all
 
     attributeOverrides:
+      - name: sometimeLater
+        type: TIME
+
       - name: commentLength
         type: NUMBER
 

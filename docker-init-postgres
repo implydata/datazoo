@@ -1,0 +1,6 @@
+#!/bin/bash -e
+
+echo "Loading Postgres..."
+docker rm -f datazoo-postgres 2>/dev/null || echo "no Postgres container to remove";
+docker run -v "$PWD":/opt/data -p 5432:5432 --name datazoo-postgres -e POSTGRES_USER=root -e POSTGRES_PASSWORD=datazoo -d postgres:9.5
+docker exec -it datazoo-postgres /opt/data/postgres/load-data

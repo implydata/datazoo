@@ -1,0 +1,6 @@
+#!/bin/bash -e
+
+echo "Loading MySQL..."
+docker rm -f datazoo-mysql 2>/dev/null || echo "no MySQL container to remove";
+docker run -v "$PWD":/opt/data -p 3306:3306 -d --name datazoo-mysql -e MYSQL_ALLOW_EMPTY_PASSWORD='true' -d mysql/mysql-server:5.7
+docker exec -it datazoo-mysql /opt/data/mysql/load-data

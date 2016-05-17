@@ -1,68 +1,76 @@
-#!/bin/bash -eu
+#!/usr/bin/env node
+"use strict";
 
-# Force this to the working directory
-cd "$(dirname "$0")"
+var fs = require('fs');
+var byline = require('byline');
 
-echo "Converting JSON to SQL inserts"
+function formatValueMySQL(v) {
+  if (v == null) return 'NULL';
+  var t = typeof v;
+  if (t === 'string') return singleQuoteMySQL(v);
+  return v;
+}
 
-echo "SELECT 'Do this' AS Lets" > tmp/wikipedia-raw.sql;
+function formatValuePostgres(v) {
+  if (v == null) return 'NULL';
+  var t = typeof v;
+  if (t === 'string') return singleQuote(v);
+  return v;
+}
 
-cat tmp/wikipedia.json \
-| jq -c -r '
-  {
-    time: .time | sub("Z"; ""),
-    sometimeLater: .sometimeLater | sub("Z"; ""),
-    channel,
-    cityName,
-    comment,
-    commentLength,
-    countryIsoCode,
-    countryName,
-    isAnonymous,
-    isMinor,
-    isNew,
-    isRobot,
-    isUnpatrolled,
-    metroCode,
-    namespace,
-    page,
-    regionIsoCode,
-    regionName,
-    user,
-    delta,
-    added,
-    deleted,
-    deltaByTen
-	}
-  |
-  [
-    .time,
-    .sometimeLater,
-    .channel,
-    .cityName,
-    .comment,
-    .commentLength,
-    .countryIsoCode,
-    .countryName,
-    .isAnonymous,
-    .isMinor,
-    .isNew,
-    .isRobot,
-    .isUnpatrolled,
-    .metroCode,
-    .namespace,
-    .page,
-    .regionIsoCode,
-    .regionName,
-    .user,
-    .delta,
-    .added,
-    .deleted,
-    .deltaByTen
-  ]
-  | tostring
-  | .[1:-1]
-  | ((if (input_line_number - 1) % 100 == 0 then "; INSERT INTO wikipedia_raw VALUES (" else ", (" end) + . + ")")
-' >> tmp/wikipedia-raw.sql
+function singleQuoteMySQL(str) {
+  return singleQuote(str.replace(/\\/g, "\\\\"));
+}
 
-echo ";" >> tmp/wikipedia-raw.sql;
+function singleQuote(str) {
+  return "'" + str.replace(/'/g, "''") + "'";
+}
+
+var outMySQL = fs.createWriteStream('tmp/wikipedia-raw-mysql.sql')
+var outPostgres = fs.createWriteStream('tmp/wikipedia-raw-postgres.sql')
+
+var lines = byline(fs.createReadStream('tmp/wikipedia.json', { encoding: 'utf8' }));
+
+var lineNumber = 0;
+lines.on('data', function(line) {
+  var d = JSON.parse(line.toString());
+  d.time = d.time.replace('Z', '');
+  d.sometimeLater = d.sometimeLater.replace('Z', '');
+
+  var l = [
+    d.time,
+    d.sometimeLater,
+    d.channel,
+    d.cityName,
+    d.comment,
+    d.commentLength,
+    d.countryIsoCode,
+    d.countryName,
+    d.isAnonymous,
+    d.isMinor,
+    d.isNew,
+    d.isRobot,
+    d.isUnpatrolled,
+    d.metroCode,
+    d.namespace,
+    d.page,
+    d.regionIsoCode,
+    d.regionName,
+    d.user,
+    d.delta,
+    d.added,
+    d.deleted,
+    d.deltaByTen
+  ];
+
+  var prefix = lineNumber % 100 ? ', (' : '; INSERT INTO wikipedia_raw VALUES (';
+  outMySQL.write(prefix + l.map(formatValueMySQL).join(', ') + ')\n', 'utf8');
+  outPostgres.write(prefix + l.map(formatValuePostgres).join(', ') + ')\n', 'utf8');
+  lineNumber++;
+})
+
+lines.on('end', function() {
+  var v = ';\n';
+  outMySQL.write(v, 'utf8');
+  outPostgres.write(v, 'utf8');
+});

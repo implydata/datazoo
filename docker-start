@@ -3,7 +3,8 @@
 docker-machine start default || echo "already running";
 eval $(docker-machine env)
 
-docker start datazoo-mysql
 docker start datazoo-druid
+docker start datazoo-mysql
+docker start datazoo-postgres
 
 echo "Running on: $DOCKER_HOST"

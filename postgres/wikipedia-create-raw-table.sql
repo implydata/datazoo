@@ -1,0 +1,26 @@
+DROP TABLE IF EXISTS wikipedia_raw;
+CREATE TABLE wikipedia_raw (
+  "time" timestamp NOT NULL,
+  "sometimeLater" timestamp NOT NULL,
+  "channel" varchar(255) NOT NULL,
+  "cityName" varchar(255) DEFAULT NULL,
+  "comment" varchar(300) NOT NULL,
+  "commentLength" int NOT NULL,
+  "countryIsoCode" varchar(255) DEFAULT NULL,
+  "countryName" varchar(255) DEFAULT NULL,
+  "isAnonymous" boolean NOT NULL,
+  "isMinor" boolean NOT NULL,
+  "isNew" boolean NOT NULL,
+  "isRobot" boolean NOT NULL,
+  "isUnpatrolled" boolean NOT NULL,
+  "metroCode" int DEFAULT NULL,
+  "namespace" varchar(255) DEFAULT NULL,
+  "page" varchar(255) DEFAULT NULL,
+  "regionIsoCode" varchar(255) DEFAULT NULL,
+  "regionName" varchar(255) DEFAULT NULL,
+  "user" varchar(255) DEFAULT NULL,
+  "delta" int NOT NULL,
+  "added" int NOT NULL,
+  "deleted" int NOT NULL,
+  "deltaByTen" float NOT NULL
+);
