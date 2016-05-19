@@ -8,6 +8,7 @@ CREATE TABLE `wikipedia_raw` (
   `commentLength` int(11) NOT NULL,
   `countryIsoCode` varchar(255) DEFAULT NULL,
   `countryName` varchar(255) DEFAULT NULL,
+  `deltaBucket100` int(11) NOT NULL,
   `isAnonymous` tinyint(1) NOT NULL,
   `isMinor` tinyint(1) NOT NULL,
   `isNew` tinyint(1) NOT NULL,

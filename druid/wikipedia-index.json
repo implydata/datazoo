@@ -29,6 +29,7 @@
               "commentLength",
               "countryIsoCode",
               "countryName",
+              "deltaBucket100",
               "isAnonymous",
               "isMinor",
               "isNew",
@@ -93,6 +94,11 @@
           "name" : "user_unique",
           "type" : "hyperUnique",
           "fieldName" : "user"
+        },
+        {
+          "type" : "thetaSketch",
+          "name" : "user_theta",
+          "fieldName": "user"
         },
         {
           "name" : "page_unique",

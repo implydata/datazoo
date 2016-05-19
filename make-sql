@@ -46,6 +46,7 @@ lines.on('data', function(line) {
     d.commentLength,
     d.countryIsoCode,
     d.countryName,
+    d.deltaBucket100,
     d.isAnonymous,
     d.isMinor,
     d.isNew,
