@@ -18,13 +18,16 @@ dataSources:
 
     defaultPinnedDimensions: []
 
-    introspection: autofill-all
+    introspection: no-autofill
 
     attributeOverrides:
       - name: sometimeLater
         type: TIME
 
       - name: commentLength
+        type: NUMBER
+
+      - name: deltaBucket100
         type: NUMBER
 
       - name: isAnonymous
@@ -70,6 +73,11 @@ dataSources:
         title: Comment Length Over 100
         expression: $commentLength > 100
         kind: boolean
+
+      - name: deltaBucket100
+        title: Delta Bucket
+        expression: $deltaBucket100
+        kind: number
 
       - name: countryIsoCode
         title: Country Iso Code
@@ -130,6 +138,10 @@ dataSources:
       - name: userCharsPhonetic
         title: User Chars Phonetic
         expression: $userChars.lookup("nato-phonetic")
+
+      - name: cityLoveKoala
+        title: ʕ•ᴥ•ʔ ❤️ City ❤️ ʕ•ᴥ•ʔ
+        expression: "'ʕ•ᴥ•ʔ ❤️ ' ++ $cityName ++ ' ❤️ ʕ•ᴥ•ʔ'"
 
     measures:
       - name: count
