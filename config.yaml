@@ -180,6 +180,18 @@ dataSources:
         title: Min Delta
         expression: $main.min($min_delta)
 
+      - name: avg_commentLength
+        title: Average Comment Length
+        expression: $main.sum($commentLength * $count) / $main.sum($count)
+
+      - name: max_commentLength
+        title: Max Comment Length
+        expression: $main.max($commentLength)
+
+      - name: min_commentLength
+        title: Min Comment Length
+        expression: $main.min($commentLength)
+
       - name: page_unique
         title: Page Unique
         expression: $main.countDistinct($page_unique)
@@ -187,6 +199,11 @@ dataSources:
       - name: user_unique
         title: User Unique
         expression: $main.countDistinct($user_unique)
+
+      - name: user_theta
+        title: User Unique (theta)
+        expression: $main.countDistinct($user_theta)
+
 
   - name: wikipedia-static
     title: Wikipedia Static
