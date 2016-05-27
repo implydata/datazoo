@@ -56,6 +56,10 @@ dataSources:
         title: Channel
         expression: $channel
 
+      - name: channel-lookup
+        title: Channel Lookup
+        expression: $channel.lookup('channel-lookup')
+
       - name: cityName
         title: City Name
         expression: $cityName
