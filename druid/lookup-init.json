@@ -1,0 +1,34 @@
+{
+  "__default": {
+    "channel-lookup": {
+      "type": "cachedNamespace",
+      "extractionNamespace": {
+        "type": "uri",
+        "namespace": "channel-lookup",
+        "uri": "file:/opt/data/druid/channel-lookup.json",
+        "namespaceParseSpec": {
+          "format": "customJson",
+          "keyFieldName": "key",
+          "valueFieldName": "value"
+        },
+        "pollPeriod": "P1D"
+      },
+      "firstCacheTimeout": 120000
+    },
+    "nato-phonetic": {
+      "type": "cachedNamespace",
+      "extractionNamespace": {
+        "type": "uri",
+        "namespace": "nato-phonetic",
+        "uri": "file:/opt/data/druid/nato-phonetic.json",
+        "namespaceParseSpec": {
+          "format": "customJson",
+          "keyFieldName": "key",
+          "valueFieldName": "value"
+        },
+        "pollPeriod": "P1D"
+      },
+      "firstCacheTimeout": 120000
+    }
+  }
+}

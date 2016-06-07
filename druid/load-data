@@ -5,3 +5,7 @@ bin/post-index-task -f /opt/data/druid/wikipedia-index.json;
 
 echo "Sending compact index job...";
 bin/post-index-task -f /opt/data/druid/wikipedia-compact-index.json;
+
+curl -s -X POST -d '{}' http://localhost:8081/druid/coordinator/v1/lookups --header "Content-Type:application/json" > /dev/null
+
+curl -s -X POST -d @/opt/data/druid/lookup-init.json http://localhost:8081/druid/coordinator/v1/lookups --header "Content-Type:application/json" > /dev/null

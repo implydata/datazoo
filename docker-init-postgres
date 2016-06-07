@@ -1,4 +1,5 @@
 #!/bin/bash -e
+eval $(docker-machine env)
 
 echo "Loading Postgres..."
 docker rm -f datazoo-postgres 2>/dev/null || echo "no Postgres container to remove";

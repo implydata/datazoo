@@ -1,7 +1,6 @@
 #!/bin/bash -e
 
 docker-machine start default || echo "Machine is already running";
-eval $(docker-machine env)
 
 ./docker-init-druid
 ./docker-init-mysql

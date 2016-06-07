@@ -1,4 +1,5 @@
 #!/bin/bash -e
+eval $(docker-machine env)
 
 echo "Loading Druid...";
 docker rm -f datazoo-druid 2>/dev/null || echo "no Druid container to remove";
