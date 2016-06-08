@@ -1,0 +1,7 @@
+#!/bin/bash -e
+
+eval $(docker-machine env)
+
+echo "Copying Druid logs...";
+
+docker exec -it datazoo-druid /opt/data/druid/cp-logs;

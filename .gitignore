@@ -1,6 +1,8 @@
 .DS_Store
 node_modules/
 *.sublime-*
+druid-*/
+logs/
 
 # You have to make the files in 'tmp' yourself by running ./make-data-files
 tmp/

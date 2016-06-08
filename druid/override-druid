@@ -1,0 +1,4 @@
+#!/bin/bash -eu
+
+echo "Overriding Druid...";
+cp -r /opt/data/druid-0.9.1-rc2-SNAPSHOT/* dist/druid/
