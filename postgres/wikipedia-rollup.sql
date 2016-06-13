@@ -25,6 +25,7 @@ SELECT
   "regionIsoCode",
   "regionName",
   "user",
+  "userChars",
 
   /* Measures */
   COUNT(*) AS "count",
@@ -56,4 +57,6 @@ GROUP BY
   "page",
   "regionIsoCode",
   "regionName",
-  "user";
+  "user",
+  "userChars";
+
