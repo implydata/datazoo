@@ -5,7 +5,7 @@
       "extractionNamespace": {
         "type": "uri",
         "namespace": "channel-lookup",
-        "uri": "file:/opt/data/druid/channel-lookup.json",
+        "uri": "file:/opt/data/druid/channel-lookup/channel-lookup.json",
         "namespaceParseSpec": {
           "format": "customJson",
           "keyFieldName": "key",
@@ -20,7 +20,7 @@
       "extractionNamespace": {
         "type": "uri",
         "namespace": "nato-phonetic",
-        "uri": "file:/opt/data/druid/nato-phonetic.json",
+        "uri": "file:/opt/data/druid/nato-phonetic/nato-phonetic.json",
         "namespaceParseSpec": {
           "format": "customJson",
           "keyFieldName": "key",
