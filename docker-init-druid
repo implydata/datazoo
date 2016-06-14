@@ -6,6 +6,7 @@ docker rm -f datazoo-druid 2>/dev/null || echo "no Druid container to remove";
 docker build -t datazoo-druid ./druid;
 docker run -v "$PWD":/opt/data -p 8081-8110:8081-8110 -p 8200:8200 -p 9095:9095 -d --name datazoo-druid datazoo-druid;
 
+./download-latest-druid-rc;
 docker exec -it datazoo-druid /opt/data/druid/override-druid;
 docker restart datazoo-druid;
 
