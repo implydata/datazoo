@@ -15,6 +15,8 @@ function formatValuePostgres(v) {
   if (v == null) return 'NULL';
   var t = typeof v;
   if (t === 'string') return singleQuote(v);
+  if (Array.isArray(v)) return 'ARRAY[' + v.map(formatValuePostgres) + ']';
+
   return v;
 }
 
@@ -30,43 +32,44 @@ var outMySQL = fs.createWriteStream('tmp/wikipedia-raw-mysql.sql')
 var outPostgres = fs.createWriteStream('tmp/wikipedia-raw-postgres.sql')
 
 var lines = byline(fs.createReadStream('tmp/wikipedia.json', { encoding: 'utf8' }));
+var cols = [
+  'time',
+  'sometimeLater',
+  'channel',
+  'cityName',
+  'comment',
+  'commentLength',
+  'countryIsoCode',
+  'countryName',
+  'deltaBucket100',
+  'isAnonymous',
+  'isMinor',
+  'isNew',
+  'isRobot',
+  'isUnpatrolled',
+  'metroCode',
+  'namespace',
+  'page',
+  'regionIsoCode',
+  'regionName',
+  'user',
+  'userChars',
+  'delta',
+  'added',
+  'deleted',
+  'deltaByTen'
+];
+var postGres = cols;
+var mySql = cols.filter(c => c != 'userChars')
 
 var lineNumber = 0;
 lines.on('data', function(line) {
   var d = JSON.parse(line.toString());
   d.time = d.time.replace('Z', '');
   d.sometimeLater = d.sometimeLater.replace('Z', '');
-
-  var l = [
-    d.time,
-    d.sometimeLater,
-    d.channel,
-    d.cityName,
-    d.comment,
-    d.commentLength,
-    d.countryIsoCode,
-    d.countryName,
-    d.deltaBucket100,
-    d.isAnonymous,
-    d.isMinor,
-    d.isNew,
-    d.isRobot,
-    d.isUnpatrolled,
-    d.metroCode,
-    d.namespace,
-    d.page,
-    d.regionIsoCode,
-    d.regionName,
-    d.user,
-    d.delta,
-    d.added,
-    d.deleted,
-    d.deltaByTen
-  ];
-
   var prefix = lineNumber % 100 ? ', (' : '; INSERT INTO wikipedia_raw VALUES (';
-  outMySQL.write(prefix + l.map(formatValueMySQL).join(', ') + ')\n', 'utf8');
-  outPostgres.write(prefix + l.map(formatValuePostgres).join(', ') + ')\n', 'utf8');
+  outMySQL.write(prefix + mySql.map((c) => { return formatValueMySQL(d[c]) }).join(', ') + ')\n', 'utf8');
+  outPostgres.write(prefix + cols.map((c) => { return formatValuePostgres(d[c]) }).join(', ') + ')\n', 'utf8');
   lineNumber++;
 })
 
