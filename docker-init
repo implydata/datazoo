@@ -5,3 +5,4 @@ docker-machine start default || echo "Machine is already running";
 ./docker-init-druid
 ./docker-init-mysql
 ./docker-init-postgres
+# ./docker-init-presto

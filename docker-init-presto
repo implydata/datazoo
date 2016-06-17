@@ -1,0 +1,12 @@
+#!/bin/bash -e
+eval $(docker-machine env)
+
+PRESTO_TAG=0.141
+SERV_PORT=8080
+
+echo "Loading Presto..."
+docker rm -f datazoo-presto 2>/dev/null || echo "no Presto container to remove";
+
+docker run -d --name=datazoo-presto --restart=always -h presto -p 8080:8080 \
+  -v "$PWD"/presto/etc:/presto/etc:Z \
+  zhicwu/presto:$PRESTO_TAG
