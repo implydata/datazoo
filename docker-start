@@ -6,5 +6,6 @@ eval $(docker-machine env)
 docker start datazoo-druid
 docker start datazoo-mysql
 docker start datazoo-postgres
+# docker start datazoo-presto
 
 echo "Running on: $DOCKER_HOST"
