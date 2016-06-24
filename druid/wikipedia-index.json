@@ -27,6 +27,7 @@
               "cityName",
               "comment",
               "commentLength",
+              "commentLengthStr",
               "countryIsoCode",
               "countryName",
               "deltaBucket100",

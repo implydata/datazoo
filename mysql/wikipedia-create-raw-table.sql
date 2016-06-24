@@ -6,6 +6,7 @@ CREATE TABLE `wikipedia_raw` (
   `cityName` varchar(255) DEFAULT NULL,
   `comment` varchar(300) NOT NULL,
   `commentLength` int(11) NOT NULL,
+  `commentLengthStr` varchar(10) NOT NULL,
   `countryIsoCode` varchar(255) DEFAULT NULL,
   `countryName` varchar(255) DEFAULT NULL,
   `deltaBucket100` int(11) NOT NULL,

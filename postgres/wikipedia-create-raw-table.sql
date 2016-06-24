@@ -6,6 +6,7 @@ CREATE TABLE wikipedia_raw (
   "cityName" varchar(255) COLLATE "C" DEFAULT NULL,
   "comment" varchar(300) COLLATE "C" NOT NULL,
   "commentLength" int NOT NULL,
+  "commentLengthStr" varchar(10) COLLATE "C" NOT NULL,
   "countryIsoCode" varchar(255) COLLATE "C" DEFAULT NULL,
   "countryName" varchar(255) COLLATE "C" DEFAULT NULL,
   "deltaBucket100" int NOT NULL,

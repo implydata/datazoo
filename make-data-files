@@ -17,6 +17,7 @@ gzcat wikipedia-2015-09-12.gz \
       cityName,
       comment,
       commentLength: (.comment | length),
+      commentLengthStr: (.comment | length) | tostring,
       countryIsoCode,
       countryName,
       deltaBucket100: (.delta/100 | floor | .*100),
