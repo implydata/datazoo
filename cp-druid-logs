@@ -4,4 +4,5 @@ eval $(docker-machine env)
 
 echo "Copying Druid logs...";
 
+mkdir -p logs
 docker exec -it datazoo-druid /opt/data/druid/cp-logs;

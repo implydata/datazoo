@@ -2,4 +2,5 @@
 
 rm -rf druid-0.9.1-rc4;
 curl http://static.druid.io/artifacts/releases/druid-0.9.1-rc4-bin.tar.gz | tar xz;
+rm -rf druid-override;
 mv druid-0.9.1-rc4 druid-override;
