@@ -2,7 +2,7 @@
 
 if [ `cat ./version` != `cat ./tmp/version` ]
 then
-  echo "Please run ./make-data-files";
+  echo "Data files out of date, please run ./make-data-files";
   exit 1;
 fi
 
