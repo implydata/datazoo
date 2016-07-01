@@ -44,3 +44,5 @@ echo "Sampling...";
 perl -ne'print if $. % 10 == 0' tmp/wikipedia.json > tmp/wikipedia-sampled.json
 
 ./make-sql
+
+cp ./version ./tmp

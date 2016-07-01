@@ -1,8 +1,8 @@
 {
   "name": "datazoo",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A collection of datasets",
-  "main": "index.js",
+  "main": "info.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,10 +11,12 @@
     "url": "git+https://github.com/implydata/datazoo.git"
   },
   "keywords": [
-    "data",
-    "zoo",
+    "datazoo",
     "dataset",
-    "druid"
+    "druid",
+    "mysql",
+    "postgres",
+    "prestro"
   ],
   "author": "Vadim Ogievetsky",
   "license": "Apache-2.0",

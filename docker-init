@@ -1,5 +1,11 @@
 #!/bin/bash -e
 
+if [ `cat ./version` != `cat ./tmp/version` ]
+then
+  echo "Please run ./make-data-files";
+  exit 1;
+fi
+
 docker-machine start default || echo "Machine is already running";
 
 ./docker-init-druid
