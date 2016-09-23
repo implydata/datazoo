@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash -eu
 eval $(docker-machine env)
 
 PRESTO_TAG=0.141

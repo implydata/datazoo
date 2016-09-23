@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash -eu
 
 if [ `cat ./version` != `cat ./tmp/version` ]
 then

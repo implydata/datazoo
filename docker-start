@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash -eu
 
 docker-machine start default || echo "already running";
 eval $(docker-machine env)

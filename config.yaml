@@ -72,6 +72,8 @@ dataSources:
         title: Comment Length
         expression: $commentLength
         kind: number
+        #bucketingStrategy: defaultNoBucket
+        granularities: [0.1, 0.5, 1, 2, 3]
 
       - name: commentLengthOver100
         title: Comment Length Over 100
