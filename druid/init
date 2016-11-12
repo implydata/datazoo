@@ -9,3 +9,8 @@ perl -pi -e's/druid.extensions.loadList=.*/druid.extensions.loadList=["druid-nam
 # Init for legacy lookups
 echo 'druid.query.extraction.namespace.lookups=[{"type":"uri","namespace":"channel-lookup","uri":"file:/opt/data/druid/channel-lookup/","namespaceParseSpec":{"format":"customJson","keyFieldName":"key","valueFieldName":"value"},"pollPeriod":"P1D"},{"type":"uri","namespace":"nato-phonetic","uri":"file:/opt/data/druid/nato-phonetic/","namespaceParseSpec":{"format":"customJson","keyFieldName":"key","valueFieldName":"value"},"pollPeriod":"P1D"}]' \
   >> /root/imply-*/conf-quickstart/druid/_common/common.runtime.properties
+
+# Init for groupBy: V2
+echo 'druid.processing.numMergeBuffers=1' \
+  >> /root/imply-*/conf-quickstart/druid/_common/common.runtime.properties
+
