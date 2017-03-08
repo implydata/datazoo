@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS "wikipedia";
 CREATE TABLE "wikipedia" AS
 SELECT
   /* Time Spec :-) */
-  date_trunc('minute', "time") AS "time", /* Rollup queryGranularity: minute */
+  date_trunc('minute', "__time") AS "__time", /* Rollup queryGranularity: minute */
 
   /* Dimensions */
   "sometimeLater",
@@ -39,7 +39,7 @@ SELECT
 
 FROM "wikipedia_raw"
 GROUP BY
-  date_trunc('minute', "time"),
+  date_trunc('minute', "__time"),
   "sometimeLater",
   "channel",
   "cityName",

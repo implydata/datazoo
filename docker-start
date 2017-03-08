@@ -1,5 +1,6 @@
 #!/bin/bash -eu
 
+./docker-stop;
 docker-machine start default || echo "already running";
 eval $(docker-machine env)
 

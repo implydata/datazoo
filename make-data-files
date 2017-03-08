@@ -11,7 +11,7 @@ gzcat wikipedia-2015-09-12.gz \
   | jq -c '
     select("2015-09-12" < .timestamp and .timestamp < "2015-09-13") |
     {
-      time: .timestamp | sub(".[0-9]{3}Z"; "Z"),
+      __time: .timestamp | sub(".[0-9]{3}Z"; "Z"),
       sometimeLater: .timestamp | sub("2015-"; "2016-") | sub(":[0-9]{2}.[0-9]{3}Z"; ":00Z"),
       channel: .channel | sub("#"; "") | sub(".wikipedia"; ""),
       cityName,

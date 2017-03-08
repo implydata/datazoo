@@ -1,4 +1,15 @@
 #!/bin/bash -eu
 
 echo "Overriding Druid...";
-cp -r /opt/data/druid-override/* dist/druid/
+
+rm -rf conf/
+mkdir -p conf/
+cp -r /opt/data/imply/conf/* conf/
+
+rm -rf conf-quickstart/
+mkdir -p conf-quickstart/
+cp -r /opt/data/imply/conf-quickstart/* conf-quickstart/
+
+rm -rf dist/
+mkdir -p dist/
+cp -r /opt/data/imply/dist/* dist/

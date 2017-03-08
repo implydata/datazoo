@@ -47,7 +47,7 @@
           },
           "timestampSpec" : {
             "format" : "auto",
-            "column" : "time"
+            "column" : "__time"
           }
         }
       },

@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS `wikipedia`;
 CREATE TABLE `wikipedia`
 SELECT
   /* Time Spec :-) */
-  CONVERT(DATE_FORMAT(`time`, "%Y-%m-%d %H:%i:00"), DATETIME) AS "time", /* Rollup queryGranularity: minute */
+  CONVERT(DATE_FORMAT(`__time`, "%Y-%m-%d %H:%i:00"), DATETIME) AS "__time", /* Rollup queryGranularity: minute */
 
   /* Dimensions */
   `sometimeLater`,
@@ -38,7 +38,7 @@ SELECT
 
 FROM `wikipedia_raw`
 GROUP BY
-  CONVERT(DATE_FORMAT(`time`, "%Y-%m-%d %H:%i:00"), DATETIME),
+  CONVERT(DATE_FORMAT(`__time`, "%Y-%m-%d %H:%i:00"), DATETIME),
   `sometimeLater`,
   `channel`,
   `cityName`,

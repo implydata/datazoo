@@ -1,3 +1,3 @@
 #!/bin/bash -eu
 
-docker-machine stop default
+docker-machine stop default || echo "not running running"

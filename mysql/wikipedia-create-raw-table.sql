@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS `wikipedia_raw`;
 CREATE TABLE `wikipedia_raw` (
-  `time` datetime NOT NULL,
+  `__time` datetime NOT NULL,
   `sometimeLater` timestamp NOT NULL,
   `channel` varchar(255) NOT NULL,
   `cityName` varchar(255) DEFAULT NULL,
