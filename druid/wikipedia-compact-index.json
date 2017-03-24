@@ -24,7 +24,7 @@
             "dimensions" : [
               "channel",
               "cityName",
-              "commentLength",
+              { "name" : "commentLength", "type" : "long" },
               "countryIsoCode",
               "countryName",
               "isAnonymous",

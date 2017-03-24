@@ -13,6 +13,7 @@ gzcat wikipedia-2015-09-12.gz \
     {
       __time: .timestamp | sub(".[0-9]{3}Z"; "Z"),
       sometimeLater: .timestamp | sub("2015-"; "2016-") | sub(":[0-9]{2}.[0-9]{3}Z"; ":00Z"),
+      sometimeLaterMs: ((.timestamp | sub("2015-"; "2016-") | sub(":[0-9]{2}.[0-9]{3}Z"; ":00Z") | fromdateiso8601) * 1000),
       channel: .channel | sub("#"; "") | sub(".wikipedia"; ""),
       cityName,
       comment,

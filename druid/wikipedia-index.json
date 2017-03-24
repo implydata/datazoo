@@ -23,14 +23,15 @@
           "dimensionsSpec" : {
             "dimensions" : [
               "sometimeLater",
+              { "name" : "sometimeLaterMs", "type" : "long" },
               "channel",
               "cityName",
               "comment",
-              "commentLength",
+              { "name" : "commentLength", "type" : "long" },
               "commentLengthStr",
               "countryIsoCode",
               "countryName",
-              "deltaBucket100",
+              { "name" : "deltaBucket100", "type" : "float" },
               "isAnonymous",
               "isMinor",
               "isNew",
