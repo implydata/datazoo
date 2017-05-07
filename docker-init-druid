@@ -1,6 +1,22 @@
 #!/bin/bash -eu
 eval $(docker-machine env)
 
+IMPLY_VERSION="imply-2.1.1"
+
+# ensure that `imply` folder exists
+if tar -xzf "$IMPLY_VERSION.tar.gz" ; then
+  rm -rf imply
+  mv "$IMPLY_VERSION" imply
+else
+  echo '==================================================================================='
+  echo '  You are missing the imply distribution that is needed to set up the Druid cluster'
+  echo '  You need to:'
+  echo '  1. Download the latest imply distribution form http://imply.io/download'
+  echo '  2. Run this script again'
+  echo '==================================================================================='
+  exit 1
+fi
+
 echo "Loading Druid...";
 docker rm -f datazoo-druid 2>/dev/null || echo "no Druid container to remove";
 docker build -t datazoo-druid ./druid;

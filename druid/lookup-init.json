@@ -1,19 +1,14 @@
 {
   "__default": {
     "channel-lookup": {
-      "type": "cachedNamespace",
-      "extractionNamespace": {
-        "type": "uri",
-        "namespace": "channel-lookup",
-        "uri": "file:/opt/data/druid/channel-lookup/channel-lookup.json",
-        "namespaceParseSpec": {
-          "format": "customJson",
-          "keyFieldName": "key",
-          "valueFieldName": "value"
-        },
-        "pollPeriod": "P1D"
-      },
-      "firstCacheTimeout": 120000
+      "type": "map",
+      "map": {
+        "en": "English",
+        "es": "Spanish",
+        "fr": "French",
+        "he": "Hebrew",
+        "ru": "Russian"
+      }
     },
     "nato-phonetic": {
       "type": "cachedNamespace",
