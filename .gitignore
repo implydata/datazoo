@@ -3,6 +3,7 @@ node_modules/
 *.sublime-*
 imply/
 logs/
+imply-*.tar.gz
 
 # You have to make the files in 'tmp' yourself by running ./make-data-files
 tmp/

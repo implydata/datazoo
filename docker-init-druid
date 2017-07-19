@@ -1,7 +1,7 @@
 #!/bin/bash -eu
 eval $(docker-machine env)
 
-IMPLY_VERSION="imply-2.1.1"
+IMPLY_VERSION="imply-2.2.3"
 
 # ensure that `imply` folder exists
 if tar -xzf "$IMPLY_VERSION.tar.gz" ; then
