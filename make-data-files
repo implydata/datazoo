@@ -30,7 +30,7 @@ gzcat wikipedia-2015-09-12.gz \
       metroCode,
       namespace,
       page,
-      regionIsoCode,
+      regionIsoCode: (if .regionIsoCode != null then .regionIsoCode else (if .isRobot then "null" else null end) end),
       regionName,
       user,
       userChars: (.user | ascii_upcase | split("") | unique),

@@ -1,29 +1,35 @@
 {
   "__default": {
     "channel-lookup": {
-      "type": "map",
-      "map": {
-        "en": "English",
-        "es": "Spanish",
-        "fr": "French",
-        "he": "Hebrew",
-        "ru": "Russian"
+      "version": "b",
+      "lookupExtractorFactory": {
+        "type": "map",
+        "map": {
+          "en": "English",
+          "es": "Spanish",
+          "fr": "French",
+          "he": "Hebrew",
+          "ru": "Russian"
+        }
       }
     },
     "nato-phonetic": {
-      "type": "cachedNamespace",
-      "extractionNamespace": {
-        "type": "uri",
-        "namespace": "nato-phonetic",
-        "uri": "file:/opt/data/druid/nato-phonetic/nato-phonetic.json",
-        "namespaceParseSpec": {
-          "format": "customJson",
-          "keyFieldName": "key",
-          "valueFieldName": "value"
+      "version": "b",
+      "lookupExtractorFactory": {
+        "type": "cachedNamespace",
+        "extractionNamespace": {
+          "type": "uri",
+          "namespace": "nato-phonetic",
+          "uri": "file:/opt/data/druid/nato-phonetic/nato-phonetic.json",
+          "namespaceParseSpec": {
+            "format": "customJson",
+            "keyFieldName": "key",
+            "valueFieldName": "value"
+          },
+          "pollPeriod": "P1D"
         },
-        "pollPeriod": "P1D"
-      },
-      "firstCacheTimeout": 120000
+        "firstCacheTimeout": 120000
+      }
     }
   }
 }

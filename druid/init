@@ -13,3 +13,15 @@ echo 'druid.processing.numMergeBuffers=1' \
 # Bring JS back
 echo 'druid.javascript.enabled=true' \
   >> /root/imply-*/conf-quickstart/druid/_common/common.runtime.properties
+
+# Use doubles for real (for 0.11.x)
+echo 'druid.indexing.doubleStorage=double' \
+  >> /root/imply-*/conf-quickstart/druid/_common/common.runtime.properties
+
+# Temp fix, remove when https://github.com/druid-io/druid/pull/5097 is in
+echo 'druid.lookup.numLookupLoadingThreads=1' \
+  >> /root/imply-*/conf-quickstart/druid/_common/common.runtime.properties
+
+# Heap dump if needed
+echo '-XX:+HeapDumpOnOutOfMemoryError' \
+  >> /root/imply-*/conf-quickstart/druid/historical/jvm.config
