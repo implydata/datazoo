@@ -4,24 +4,24 @@ echo "Set Druid props...";
 
 # "druid-namespace-lookup" = legacy lookups module
 perl -pi -e's/druid.extensions.loadList=.*/druid.extensions.loadList=["druid-lookups-cached-global", "druid-histogram", "druid-datasketches"]/g' \
-  /root/imply-*/conf-quickstart/druid/_common/common.runtime.properties
+  /opt/imply/conf-quickstart/druid/_common/common.runtime.properties
 
 # Init for groupBy: V2
 echo 'druid.processing.numMergeBuffers=1' \
-  >> /root/imply-*/conf-quickstart/druid/_common/common.runtime.properties
+  >> /opt/imply/conf-quickstart/druid/_common/common.runtime.properties
 
 # Bring JS back
 echo 'druid.javascript.enabled=true' \
-  >> /root/imply-*/conf-quickstart/druid/_common/common.runtime.properties
+  >> /opt/imply/conf-quickstart/druid/_common/common.runtime.properties
 
 # Use doubles for real (for 0.11.x)
 echo 'druid.indexing.doubleStorage=double' \
-  >> /root/imply-*/conf-quickstart/druid/_common/common.runtime.properties
+  >> /opt/imply/conf-quickstart/druid/_common/common.runtime.properties
 
 # Temp fix, remove when https://github.com/druid-io/druid/pull/5097 is in
 echo 'druid.lookup.numLookupLoadingThreads=1' \
-  >> /root/imply-*/conf-quickstart/druid/_common/common.runtime.properties
+  >> /opt/imply/conf-quickstart/druid/_common/common.runtime.properties
 
 # Heap dump if needed
 echo '-XX:+HeapDumpOnOutOfMemoryError' \
-  >> /root/imply-*/conf-quickstart/druid/historical/jvm.config
+  >> /opt/imply/conf-quickstart/druid/historical/jvm.config

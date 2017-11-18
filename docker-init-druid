@@ -1,30 +1,36 @@
 #!/bin/bash -eu
 eval $(docker-machine env)
 
-#IMPLY_VERSION="imply-2.3.9"
-IMPLY_VERSION="imply-2.4.0-preview23"
-
-# ensure that `imply` folder exists
-if tar -xzf "$IMPLY_VERSION.tar.gz" ; then
-  rm -rf imply
-  mv "$IMPLY_VERSION" imply
-else
-  echo '==================================================================================='
-  echo '  You are missing the imply distribution that is needed to set up the Druid cluster'
-  echo '  You need to:'
-  echo '  1. Download the latest imply distribution form http://imply.io/download'
-  echo '  2. Run this script again'
-  echo '==================================================================================='
-  exit 1
-fi
+OVERRIDE_IMPLY_VERSION="imply-2.4.0-preview23"
 
 echo "Loading Druid...";
 docker rm -f datazoo-druid 2>/dev/null || echo "no Druid container to remove";
 docker build -t datazoo-druid ./druid;
 docker run -v "$PWD":/opt/data -p 8081-8110:8081-8110 -p 8200:8200 -p 9095:9095 -d --name datazoo-druid datazoo-druid;
 
-docker exec -it datazoo-druid /opt/data/druid/override-druid;
-docker exec -it datazoo-druid /tmp/init;
-docker restart datazoo-druid;
+if [ -z "$OVERRIDE_IMPLY_VERSION" ]; then
+  echo "Using stock docker image";
+else
+  echo "Overriding Imply version to $OVERRIDE_IMPLY_VERSION";
+
+  # ensure that `imply` folder exists
+  if tar -xzf "$OVERRIDE_IMPLY_VERSION.tar.gz" ; then
+    rm -rf imply
+    mv "$OVERRIDE_IMPLY_VERSION" imply
+  else
+    echo '==================================================================================='
+    echo '  You are missing the override Imply distribution'
+    echo '  You need to:'
+    echo '  1. Download the latest imply distribution form http://imply.io/get-started'
+    echo '  2. Put the tarball in this directory'
+    echo '  3. Run this script again'
+    echo '==================================================================================='
+    exit 1
+  fi
+
+  docker exec -it datazoo-druid /opt/data/druid/override-imply;
+  docker restart datazoo-druid;
+  docker exec -it datazoo-druid /tmp/init;
+fi
 
 docker exec -it datazoo-druid /opt/data/druid/load-data;

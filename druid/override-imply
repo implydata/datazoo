@@ -1,6 +1,6 @@
 #!/bin/bash -eu
 
-echo "Overriding Druid...";
+echo "Overriding Imply...";
 
 rm -rf conf/
 mkdir -p conf/
