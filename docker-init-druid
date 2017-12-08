@@ -1,7 +1,7 @@
 #!/bin/bash -eu
 eval $(docker-machine env)
 
-OVERRIDE_IMPLY_VERSION="imply-2.4.0-preview23"
+OVERRIDE_IMPLY_VERSION="imply-2.4.0-preview41"
 
 echo "Loading Druid...";
 docker rm -f datazoo-druid 2>/dev/null || echo "no Druid container to remove";
