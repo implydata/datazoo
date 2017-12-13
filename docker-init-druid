@@ -1,14 +1,14 @@
 #!/bin/bash -eu
 eval $(docker-machine env)
 
-OVERRIDE_IMPLY_VERSION="imply-2.4.0-preview41"
+#OVERRIDE_IMPLY_VERSION="imply-2.4.0-preview37"
 
 echo "Loading Druid...";
 docker rm -f datazoo-druid 2>/dev/null || echo "no Druid container to remove";
 docker build -t datazoo-druid ./druid;
 docker run -v "$PWD":/opt/data -p 8081-8110:8081-8110 -p 8200:8200 -p 9095:9095 -d --name datazoo-druid datazoo-druid;
 
-if [ -z "$OVERRIDE_IMPLY_VERSION" ]; then
+if [ -z ${OVERRIDE_IMPLY_VERSION+x} ]; then
   echo "Using stock docker image";
 else
   echo "Overriding Imply version to $OVERRIDE_IMPLY_VERSION";

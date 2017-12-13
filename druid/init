@@ -3,6 +3,7 @@
 echo "Set Druid props...";
 
 # "druid-namespace-lookup" = legacy lookups module
+# ToDo: "druid-parser-route", "druid-s3-extensions"
 perl -pi -e's/druid.extensions.loadList=.*/druid.extensions.loadList=["druid-lookups-cached-global", "druid-histogram", "druid-datasketches", "druid-kafka-indexing-service"]/g' \
   /opt/imply/conf-quickstart/druid/_common/common.runtime.properties
 
