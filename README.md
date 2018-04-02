@@ -20,9 +20,14 @@ This repo has helpful scripts and seed data to setup a docker container with a n
 
 ## Troubleshooting
 
-`Error getting IP address: Something went wrong running an SSH command`
+Error: `Error getting IP address: Something went wrong running an SSH command`
 
 ```
 $ docker-machine rm default
 $ docker-machine create --driver virtualbox default
 ```
+Error: `Error getting IP address: ssh command error:
+command : ip addr show
+err     : exit status 255
+output  :`
+Go to settings in VirtualBox Manager for your default machine > Network > Adapter 2 (or whichever adapter is the Host-only Adapter) > Advanced > Promiscuous Mode > Allow All
