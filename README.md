@@ -10,7 +10,7 @@ This repo has helpful scripts and seed data to setup a docker container with a n
 ## Initial Setup
 
 1. [Install Docker](https://docs.docker.com/engine/installation/)
-2. [Install Oracle VM VirtualBox manager.] (This used to be installed with docker). (https://www.virtualbox.org/wiki/Downloads)
+2. [Install Oracle VM VirtualBox manager] (https://www.virtualbox.org/wiki/Downloads)
 3. Increase docker machine memory to 4GB
   1. Open Oracle VM VirtualBox Manager (installed with docker)
   2. Under default machine -> Settings -> System -> Base Memory -> 4096MB
