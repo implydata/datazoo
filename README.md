@@ -16,3 +16,13 @@ This repo has helpful scripts and seed data to setup a docker container with a n
   2. Under default machine -> Settings -> System -> Base Memory -> 4096MB
 4. Run `./make-data-files`
 5. Run `./docker-init`
+
+
+## Troubleshooting
+
+`Error getting IP address: Something went wrong running an SSH command`
+
+```
+$ docker-machine rm default
+$ docker-machine create --driver virtualbox default
+```
