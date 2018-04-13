@@ -30,4 +30,5 @@ Error: `Error getting IP address: ssh command error:
 command : ip addr show
 err     : exit status 255
 output  :`
-Go to settings in VirtualBox Manager for your default machine > Network > Adapter 2 (or whichever adapter is the Host-only Adapter) > Advanced > Promiscuous Mode > Allow All
+Go to settings in VirtualBox Manager for your default machine 
+In settings > Network > Adapter 2 (or whichever adapter is the Host-only Adapter) > Advanced > Promiscuous Mode > Allow All
