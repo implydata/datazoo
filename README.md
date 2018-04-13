@@ -14,9 +14,9 @@ This repo has helpful scripts and seed data to setup a docker container with a n
 1. [Install Docker](https://docs.docker.com/engine/installation/)
 2. [Install Oracle VM VirtualBox manager](https://www.virtualbox.org/wiki/Downloads)
 3. Create a docker-machine
-```
-docker-machine create -d virtualbox default
-```
+    ```
+    docker-machine create -d virtualbox default
+    ```
 
 ### After installing docker
 1. Increase docker machine memory to 4GB
