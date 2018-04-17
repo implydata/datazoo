@@ -11,13 +11,46 @@ This repo has helpful scripts and seed data to setup a docker container with a n
 
 ### Docker installation
 
-1. [Install Docker](https://docs.docker.com/engine/installation/)
-2. [Install Oracle VM VirtualBox manager](https://www.virtualbox.org/wiki/Downloads)
-3. Create a docker-machine named default using the virtualbox driver
-   
-    `docker-machine create -d virtualbox default`
+# Tutorial
 
-If this is successful, `docker-machine ip` will return the ip of your machine
+## Install Docker (Mac)
+
+[Install Homebrew](http://brew.sh/#install)
+
+```sh
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+
+[Install Cask](http://caskroom.io/)
+
+```sh
+brew install caskroom/cask/brew-cask
+```
+
+Install Virtualbox
+
+```sh
+brew update
+brew cask install virtualbox
+```
+
+Docker Machine
+
+```sh
+brew update
+brew install docker-machine docker
+docker-machine create --driver virtualbox default
+eval "$(docker-machine env default)"
+```
+
+Is it working?
+
+```
+docker run hello-world
+```
+
+[build imply-docker](README.md)
+
 
 ### After installing docker
 1. Increase docker machine memory to 4GB
