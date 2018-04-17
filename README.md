@@ -49,9 +49,6 @@ Is it working?
 docker run hello-world
 ```
 
-[build imply-docker](README.md)
-
-
 ### After installing docker
 1. Increase docker machine memory to 4GB
     1. Open Oracle VM VirtualBox Manager (installed with docker)
