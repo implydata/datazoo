@@ -1,12 +1,13 @@
 {
-  "type" : "index_hadoop",
+  "type" : "index",
   "spec" : {
     "ioConfig" : {
-      "type" : "hadoop",
-      "inputSpec" : {
-        "type" : "static",
-        "paths" : "/opt/data/tmp/wikipedia.json"
-      }
+      "type" : "index",
+      "firehose" : {
+        "type" : "local",
+        "baseDir" : "/opt/data/tmp/",
+        "filter" : "wikipedia.json"
+       }
     },
     "dataSchema" : {
       "dataSource" : "wikipedia-compact",
@@ -72,12 +73,9 @@
       ]
     },
     "tuningConfig" : {
-      "type" : "hadoop",
-      "partitionsSpec" : {
-        "type" : "hashed",
-        "targetPartitionSize" : 5000000
-      },
-      "jobProperties" : {}
+      "type" : "index",
+      "targetPartitionSize" : 5000000,
+      "maxRowsInMemory" : 20000
     }
   }
 }
